@@ -1,5 +1,5 @@
 // Ionic Starter App
-
+var adapter = new MemoryAdapter();
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -16,6 +16,29 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  // 
+    .state('home', {
+      url: "/home",
+      templateUrl: "templates/home.html"
+    })
+
+    .state('contacto', {
+      url: "/contacto",
+      templateUrl: "templates/contacto.html"
+    })
+
+    // info
+     .state('info', {
+      url: "/info",
+      templateUrl: "templates/info.html"
+    })
+
+     // news
+     .state('news', {
+      url: "/news",
+      templateUrl: "templates/news.html"
+    })
+
     // setup an abstract state for the tabs directive
     .state('tab', {
       url: "/tab",
@@ -23,18 +46,41 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       templateUrl: "templates/tabs.html"
     })
 
-    // the pet tab has its own child nav-view and history
-    .state('tab.pet-index', {
-      url: '/pets',
+    // Tab: Equipo Senior
+    .state('tab.equipo-senior', {
+      url: '/senior',
       views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-index.html',
-          controller: 'PetIndexCtrl'
+        'senior-tab': {
+          templateUrl: 'templates/equipo-senior.html',
+          controller: 'EquipoSeniorCtrl'
+        }
+      }
+    })
+     // Tab: Detalle del jugador
+    .state('tab.jugador-detail', {
+      url: '/jugador/:jugadorId',
+      views: {
+        'senior-tab': {
+          templateUrl: 'templates/jugador-detail.html',
+          controller: 'JugadorDetailCtrl'
         }
       }
     })
 
-    .state('tab.pet-detail', {
+ // Tab: Equipo Juvenil
+    .state('tab.equipo-juvenil', {
+      url: '/juvenil',
+      views: {
+        'juvenil-tab': {
+          templateUrl: 'templates/equipo-juvenil.html',
+          controller: 'EquipoJuvenilCtrl'
+        }
+      }
+    })
+    
+
+
+     .state('tab.pet-detail', {
       url: '/pet/:petId',
       views: {
         'pets-tab': {
@@ -63,7 +109,8 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/pets');
+  //$urlRouterProvider.otherwise('/tab/pets');
+  $urlRouterProvider.otherwise('home');
 
 });
 

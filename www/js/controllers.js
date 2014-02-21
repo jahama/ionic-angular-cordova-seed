@@ -1,15 +1,23 @@
 angular.module('starter.controllers', [])
 
 
-// A simple controller that fetches a list of data from a service
-.controller('PetIndexCtrl', function($scope, PetService) {
+.controller('EquipoSeniorCtrl', function($scope, EquipoSeniorService) {
+  // "" is a service returning mock data (services.js)
+  $scope.jugadores = EquipoSeniorService.allJugadores();
+  console.log(" Jugadores " ,$scope.jugadores);
+})
+
+
+.controller('EquipoJuvenilCtrl', function($scope, EquipoJuvenilService) {
   // "Pets" is a service returning mock data (services.js)
-  $scope.pets = PetService.all();
+  $scope.jugadores = EquipoJuvenilService.allJugadores();
+  console.log(" Jugadores " ,$scope.jugadores);
 })
 
 
 // A simple controller that shows a tapped item's data
-.controller('PetDetailCtrl', function($scope, $stateParams, PetService) {
+.controller('JugadorDetailCtrl', function($scope, $stateParams, EquipoSeniorService) {
   // "Pets" is a service returning mock data (services.js)
-  $scope.pet = PetService.get($stateParams.petId);
-});
+  console.log($stateParams);
+  $scope.jugador = EquipoSeniorService.getJugador($stateParams.jugadorId);
+})

@@ -1,0 +1,18 @@
+<!-- 
+  This template gets placed in the Pet tab's <nav-view> directive.
+  It was wired up in the app config (app.js) 
+  The 'pets' data comes from its $scope within PetIndexCtrl (controller.js)
+-->
+<view title="'Equipo Senior'">
+  <content has-header="true" has-tabs="true">
+    <list>
+      <item ng-repeat="jugador in jugadores" type="item-text-wrap" href="#/tab/jugador/{{jugador.id}}" >
+      <a class="item item-avatar" href="#/tab/jugador/{{jugador.id}}">
+        <img src="img/ionic.png">
+        <h3>{{jugador.nombre}} {{jugador.apellido}}</h3>
+        <p> {{jugador.puesto}}</p>
+       </a>
+      </item>
+    </list>
+  </content>
+</view>

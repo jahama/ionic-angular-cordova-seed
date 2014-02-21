@@ -2,6 +2,7 @@ var MemoryAdapter = function() {
 
     this.initialize = function() {
         // No Initialization required
+        console.log("MemoryAdapter:inicializado");
         var deferred = $.Deferred();
         deferred.resolve();
         return deferred.promise();
@@ -23,6 +24,8 @@ var MemoryAdapter = function() {
 
     this.findByName = function(searchKey) {
         var deferred = $.Deferred();
+        console.log(" MemoryAdapter: findByName");
+        
         var results = employees.filter(function(element) {
             var fullName = element.firstName + " " + element.lastName;
             console.log(searchKey);
@@ -30,6 +33,7 @@ var MemoryAdapter = function() {
         });
         deferred.resolve(results);
         return deferred.promise();
+        
     }
 
     var employees = [

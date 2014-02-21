@@ -1,10 +1,15 @@
+   
+
 angular.module('starter.controllers', [])
 
 
 .controller('EquipoSeniorCtrl', function($scope, EquipoSeniorService) {
   // "" is a service returning mock data (services.js)
+  //console.log("controlador", adapter);
   $scope.jugadores = EquipoSeniorService.allJugadores();
+ //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
   console.log(" Jugadores " ,$scope.jugadores);
+ // console.log(" Empleados " ,$scope.empleados);
 })
 
 

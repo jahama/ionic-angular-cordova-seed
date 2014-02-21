@@ -2,27 +2,35 @@ angular.module('starter.services', [])
 
 .factory('EquipoSeniorService', function() {
   // Might use a resource here that returns a JSON array
- 
+  
   // Some fake testing data
-   var jugadores = [
-    { id: 0, nombre: 'Valentin', apellido: 'Basterra', puesto:'Portero' },
-    { id: 1, nombre: 'Gari', apellido: 'Amundarain', puesto:'Portero' },
-    { id: 2, nombre: 'Ion', apellido: 'Romo', puesto:'Extremo' },
-    { id: 3, nombre: 'Iñigo', apellido: 'Amezketa', puesto:'Extremo' },
-    { id: 4, nombre: 'Mikel', apellido: 'Vazquez', puesto:'Lateral' }
- ];
-
+  
   return {    
     
     allJugadores: function() {
-      return jugadores;
+      var todosJugadores ='';  
+      adapter.findAll().done(function (jugadores) {
+            todosJugadores = jugadores;
+      });
+      return todosJugadores;
     },
     getJugador: function(jugadorId) {
-      // Simple index lookup
-      return jugadores[jugadorId];
+      var unJugador;
+      adapter.findById(jugadorId).done(function(jugador) {
+                console.log(jugador);
+                unJugador = jugador
+            });
+      return unJugador;
     }
   }
 })
+
+/**
+ * local storage 
+ **/
+
+ 
+ /******************************************************************/
 
 .factory('EquipoJuvenilService', function() {
   // Might use a resource here that returns a JSON array

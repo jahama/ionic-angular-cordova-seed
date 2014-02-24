@@ -15,7 +15,33 @@ angular.module('starter.services', [])
       return todosJugadores;
     },
     getJugador: function(jugadorId) {
-      var unJugador;
+      var unJugador;                                                
+      adapter.findById(jugadorId).done(function(jugador) {
+                console.log(jugador);
+                unJugador = jugador
+            });
+      return unJugador;
+    }
+  }
+})
+
+.factory('EquipoService', function() {
+  // Might use a resource here that returns a JSON array
+  
+  // Some fake testing data
+  
+  return {    
+    
+    allJugadores: function(equipo) {
+      var todosJugadores ='';  
+      adapter.findAll(equipo).done(function (jugadores) {
+        console.log("jugadores sin filtrar", jugadores);
+            todosJugadores = jugadores;
+      });
+      return todosJugadores;
+    },
+    getJugador: function(jugadorId) {
+      var unJugador;                                                
       adapter.findById(jugadorId).done(function(jugador) {
                 console.log(jugador);
                 unJugador = jugador

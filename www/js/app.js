@@ -1,7 +1,8 @@
 // Ionic Starter App
 var adapter = new LocalStorageAdapter();
 adapter.initialize()
-console.log("inicializar el Adaptador");
+
+//console.log("inicializar el Adaptador");
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -49,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     })
 
     // Tab: Equipo Senior
-    .state('tab.equipo-senior', {
+    .state('tab.senior', {
       url: '/senior',
       views: {
         'senior-tab': {
@@ -60,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     })
      // Tab: Detalle del jugador
     .state('tab.jugador-detail', {
-      url: '/jugador/:jugadorId',
+      url: '/senior/:jugadorId',
       views: {
         'senior-tab': {
           templateUrl: 'templates/jugador-detail.html',
@@ -70,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     })
 
  // Tab: Equipo Juvenil
-    .state('tab.equipo-juvenil', {
+    .state('tab.juvenil', {
       url: '/juvenil',
       views: {
         'juvenil-tab': {
@@ -79,37 +80,41 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
         }
       }
     })
+
+    // Tab: Detalle del jugador
+    .state('tab.juvenil-detail', {
+      url: '/juvenil/:jugadorId',
+      views: {
+        'juvenil-tab': {
+          templateUrl: 'templates/jugador-detail.html',
+          controller: 'JugadorDetailCtrl'
+        }
+      }
+    })
+
+    // Tab: Equipo Cadete
+    .state('tab.cadete', {
+      url: '/cadete',
+      views: {
+        'cadete-tab': {
+          templateUrl: 'templates/equipo-cadete.html',
+          controller: 'EquipoCadeteCtrl'
+        }
+      }
+    })
+
+    // Tab: Detalle del jugador
+    .state('tab.cadete-detail', {
+      url: '/cadete/:jugadorId',
+      views: {
+        'cadete-tab': {
+          templateUrl: 'templates/jugador-detail.html',
+          controller: 'JugadorDetailCtrl'
+        }
+      }
+    })
     
-
-
-     .state('tab.pet-detail', {
-      url: '/pet/:petId',
-      views: {
-        'pets-tab': {
-          templateUrl: 'templates/pet-detail.html',
-          controller: 'PetDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.adopt', {
-      url: '/adopt',
-      views: {
-        'adopt-tab': {
-          templateUrl: 'templates/adopt.html'
-        }
-      }
-    })
-
-    .state('tab.about', {
-      url: '/about',
-      views: {
-        'about-tab': {
-          templateUrl: 'templates/about.html'
-        }
-      }
-    });
-
+    
   // if none of the above states are matched, use this as the fallback
   //$urlRouterProvider.otherwise('/tab/pets');
   $urlRouterProvider.otherwise('home');

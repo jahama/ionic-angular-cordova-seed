@@ -15,17 +15,26 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('EquipoJuvenilCtrl', function($scope, EquipoService) {
-  // "Pets" is a service returning mock data (services.js)
-  $scope.jugadores = EquipoService.allJugadores(2);
-  console.log(" Jugadores " ,$scope.jugadores);
+.controller('EquipoJuvenilCtrl', function($scope, EquipoServiceMemory) {
+    EquipoServiceMemory.findAll().then (function(result){
+      $scope.jugadores = result;
+      console.log(" EquipoJuvenilCtrl ",result);
+    });
+ //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
+  console.log(" Jugadores : EquipoJuvenilCtrl con EquipoServiceMemory  " ,$scope.jugadores);
+ // console.log(" Empleados " ,$scope.empleados);
 })
 
 
-.controller('EquipoCadeteCtrl', function($scope, EquipoService) {
-  // "Pets" is a service returning mock data (services.js)
-  $scope.jugadores = EquipoService.allJugadores(3);
-  console.log(" Jugadores " ,$scope.jugadores);
+.controller('EquipoCadeteCtrl', function($scope, EquipoServiceLS) {
+   EquipoServiceLS.findAll().then (function(result){
+       $scope.jugadores = result;
+        console.log(" EquipoCadeteCtrl ",result);
+      });
+   //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
+   // console.log(" Jugadores : EquipoJuvenilCtrl con EquipoServiceMemory  " ,$scope.jugadores);
+  //  $scope.jugadores = EquipoService.allJugadores(3);
+  //  console.log(" Jugadores " ,$scope.jugadores);
 })
 
 

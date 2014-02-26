@@ -3,11 +3,14 @@
 angular.module('starter.controllers', [])
 
 
-.controller('EquipoSeniorCtrl', function($scope, EquipoService) {
+.controller('EquipoSeniorCtrl', function($scope, EquipoServiceJSON) {
   
-  $scope.jugadores = EquipoService.allJugadores(1);
+ EquipoServiceJSON.findAll().then (function(result){
+    $scope.jugadores = result.data;
+    console.log(result.data);
+  });
  //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
-  console.log(" Jugadores " ,$scope.jugadores);
+  console.log(" Jugadores : EquipoSeniorCtrl con EquipoServiceJSON  " ,$scope.jugadores);
  // console.log(" Empleados " ,$scope.empleados);
 })
 
@@ -27,10 +30,9 @@ angular.module('starter.controllers', [])
 
 
 // A simple controller that shows a tapped item's data
-.controller('JugadorDetailCtrl', function($scope, $stateParams, EquipoService) {
-  // "Pets" is a service returning mock data (services.js)
-  console.log("estado " +  '   '  + $stateParams.jugadorId);
-  for (var a in $stateParams)
-     console.log("estado " +  ' --- ' + a);
-  $scope.jugador = EquipoService.getJugador($stateParams.jugadorId);
+.controller('JugadorDetailCtrl', function($scope, $stateParams,EquipoServiceJSON) {
+    EquipoServiceJSON.findById($stateParams.jugadorId).then(function(result){
+       $scope.jugador = result.data;
+       console.log(result.data);
+    })
 })

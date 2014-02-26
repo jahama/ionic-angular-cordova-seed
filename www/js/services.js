@@ -1,84 +1,53 @@
 angular.module('starter.services', [])
 
-.factory('EquipoSeniorService', function() {
-  // Might use a resource here that returns a JSON array
-  
-  // Some fake testing data
-  
-  return {    
-    
-    allJugadores: function() {
-      var todosJugadores ='';  
-      adapter.findAll().done(function (jugadores) {
-            todosJugadores = jugadores;
-      });
-      return todosJugadores;
-    },
-    getJugador: function(jugadorId) {
-      var unJugador;                                                
-      adapter.findById(jugadorId).done(function(jugador) {
-                console.log(jugador);
-                unJugador = jugador
-            });
-      return unJugador;
-    }
-  }
-})
-
-.factory('EquipoService', function() {
-  // Might use a resource here that returns a JSON array
-  
-  // Some fake testing data
-  
-  return {    
-    
-    allJugadores: function(equipo) {
-      var todosJugadores ='';  
-      adapter.findAll(equipo).done(function (jugadores) {
-        console.log("jugadores sin filtrar", jugadores);
-            todosJugadores = jugadores;
-      });
-      return todosJugadores;
-    },
-    getJugador: function(jugadorId) {
-      var unJugador;                                                
-      adapter.findById(jugadorId).done(function(jugador) {
-                console.log(jugador);
-                unJugador = jugador
-            });
-      return unJugador;
-    }
-  }
-})
-
-/**
- * local storage 
- **/
-
  
  /******************************************************************/
 
-.factory('EquipoJuvenilService', function() {
-  // Might use a resource here that returns a JSON array
+.factory('EquipoServiceJSON', function($q,$http) {
 
-  // Some fake testing data
-   var jugadores = [
-    { id: 0, nombre: 'juvenil 1', apellido: 'Apellido 1', puesto:'Portero' },
-    { id: 1, nombre: 'juvenil 2', apellido: 'Apellido 2', puesto:'Portero' },
-    { id: 2, nombre: 'juvenil 3', apellido: 'Apellido 3', puesto:'Extremo' },
-    { id: 3, nombre: 'juvenil 4', apellido: 'Apellido 4', puesto:'Extremo' },
-    { id: 4, nombre: 'juvenil 5', apellido: 'Apellido 5', puesto:'Lateral' }
- ];
+       
+        // We use promises to make this api asynchronous. This is clearly not necessary when using in-memory data
+        // but it makes this service more flexible and plug-and-play. For example, you can now easily replace this
+        // service with a JSON service that gets its data from a remote server without having to changes anything
+        // in the modules invoking the data service since the api is already async.
 
-  return {    
-    
-    allJugadores: function() {
-      return jugadores;
-    },
-    getJugador: function(jugadorId) {
-      // Simple index lookup
-      return jugadores[jugadorId];
-    }
-  }
-});
+        return {
+            findAll: function() {
+                var deferred = $q.defer();
+                var jugadores = $http.get('http://localhost:3000/jugadores')
+                console.log(jugadores);
+                deferred.resolve(jugadores);
+                return deferred.promise;
+            },
+
+            findById: function(employeeId) {
+                var deferred = $q.defer();
+                var jugador = $http.get('http://localhost:3000/jugador')
+                console.log(jugador);
+                deferred.resolve(jugador);
+                return deferred.promise;
+            }
+/*
+            findByName: function(searchKey) {
+                var deferred = $q.defer();
+                var results = employees.filter(function(element) {
+                    var fullName = element.firstName + " " + element.lastName;
+                    return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+                });
+                deferred.resolve(results);
+                return deferred.promise;
+            },
+
+            findByManager: function (managerId) {
+                var deferred = $q.defer(),
+                    results = employees.filter(function (element) {
+                        return parseInt(managerId) === element.managerId;
+                    });
+                deferred.resolve(results);
+                return deferred.promise;
+            }
+*/
+        }
+
+    });
 

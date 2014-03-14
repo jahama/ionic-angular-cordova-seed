@@ -5,9 +5,9 @@ angular.module('starter.controllers', [])
 
 .controller('EquipoSeniorCtrl', function($scope, EquipoServiceJSON) {
   
- EquipoServiceJSON.findAll().then (function(result){
-    $scope.jugadores = result.data;
-    console.log(result.data);
+ EquipoServiceJSON.findAll(1).then (function(result){
+    $scope.jugadores = result.data.equipos;
+    console.log("result data " ,result.data);
   });
  //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
   console.log(" Jugadores : EquipoSeniorCtrl con EquipoServiceJSON  " ,$scope.jugadores);
@@ -15,26 +15,26 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('EquipoJuvenilCtrl', function($scope, EquipoServiceMemory) {
-    EquipoServiceMemory.findAll().then (function(result){
-      $scope.jugadores = result;
-      console.log(" EquipoJuvenilCtrl ",result);
+.controller('EquipoJuvenilCtrl', function($scope, EquipoServiceJSON) {
+    EquipoServiceJSON.findAll(2).then (function(result){
+      $scope.jugadores = result.data.equipos;
+      console.log("result data " ,result.data);
     });
  //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
-  console.log(" Jugadores : EquipoJuvenilCtrl con EquipoServiceMemory  " ,$scope.jugadores);
+  console.log(" Jugadores : EquipoJuvenilCtrl con EquipoServiceJSON  " ,$scope.jugadores);
  // console.log(" Empleados " ,$scope.empleados);
 })
 
 
-.controller('EquipoCadeteCtrl', function($scope, EquipoServiceLS) {
-   EquipoServiceLS.findAll().then (function(result){
-       $scope.jugadores = result;
-        console.log(" EquipoCadeteCtrl ",result);
+.controller('EquipoCadeteCtrl', function($scope, EquipoServiceJSON) {
+   EquipoServiceJSON.findAll(3).then (function(result){
+      $scope.jugadores = result.data.equipos;
+        console.log(" EquipoCadeteCtrl ",result.data);
       });
    //  $scope.empleados = EquipoSeniorServiceLS.allJugadores();
    // console.log(" Jugadores : EquipoJuvenilCtrl con EquipoServiceMemory  " ,$scope.jugadores);
   //  $scope.jugadores = EquipoService.allJugadores(3);
-  //  console.log(" Jugadores " ,$scope.jugadores);
+    console.log(" Jugadores " ,$scope.jugadores);
 })
 
 
